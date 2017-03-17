@@ -14,29 +14,22 @@
 typedef enum Status {
     SENT,
     RECEIVED
-};
+} Status;
+
+typedef struct messageData {
+    int time;
+    string number;
+    string message;
+    Status status;
+} msgData;
 
 class Sms {
     public:
-        // getter	
-        int getTime() {
-            return time_;
-        }
-
-        int getNumber() {
-            return number_;
-        }
-
-        string getMessage() {
-            return message_;
-        }
+        void loadData();
+        void displayNumbers();
 
     private:
-        int time_;
-        // phone number
-        int number_;
-        string message_;
-        Status status_;
+        vector<msgData> msgList_;
 };
 
 
