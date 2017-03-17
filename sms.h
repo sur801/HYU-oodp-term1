@@ -11,7 +11,7 @@
 #include <iostream>
 
 // identify status of SMS
-enum Status {
+typedef enum Status {
     SENT,
     RECEIVED
 };
@@ -20,20 +20,24 @@ class Sms {
     public:
         // getter	
         int getTime() {
-            return time;
+            return time_;
         }
 
         int getNumber() {
-            return number;
+            return number_;
         }
 
         string getMessage() {
-            return message;
+            return message_;
         }
 
     private:
-        int time;
+        int time_;
         // phone number
-        int number;
-        string message;
+        int number_;
+        string message_;
+        Status status_;
 };
+
+
+#endif

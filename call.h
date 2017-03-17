@@ -14,7 +14,7 @@
 #include<iostream>
 
 //identify status of call
-enum Status {
+typedef enum Status {
 	SENT,
 	RECEIVED,
 	MISSED
@@ -24,15 +24,18 @@ class Call {
 	public:
 		//getter
 		int getTime() {
-			return time;
+			return time_;
 		}
 
 		int getNumber() {
-			return number;
+			return number_;
 		} 
 
 	private:
-		int time;
+		int time_;
 		//phone number
-		int number;
-}
+		int number_;
+        Status status_;
+};
+
+#endif
