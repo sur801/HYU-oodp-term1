@@ -14,36 +14,37 @@
 using namespace std;
 
 typedef enum Group {
-	FAMILY,
-	FRIEND,
-	COWORKER,
-	ETC
+    FAMILY,
+    FRIEND,
+    COWORKER,
+    ETC
 };
 
-typedef struct entry{
-	string name;
-	int number;
-	Group group;
-}Entry;
+typedef pair<string,pair<string,Group> > AddrList;
+
 
 
 class Addressbook {
 
 
 	public:
-
-		Entry(string name, int number, int group) {
+		Addressbook(string name, int number, int group) {
 			this->entry_.name = name;
 			this->entry_.number = number;
 			
-		};
-
-
-
-		
+		}
+        void displayData();
+        void loadData();
+        void saveData();
+        void addData();
+        void delData():
+        void sortData();
+        void searchData();
+    
+    
 	private:
-		Entry entry_;
-		vector<Entry>;
+        vector<AddrList> addrBook;
+    
     
 }
 

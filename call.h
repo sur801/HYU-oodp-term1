@@ -18,24 +18,27 @@ typedef enum Status {
 	SENT,
 	RECEIVED,
 	MISSED
-};
+}Status ;
+
+typedef struct callData{
+    int time;
+    string number;
+    Status status_;
+}callData;
 
 class Call {
-	public:
-		//getter
-		int getTime() {
-			return time_;
-		}
-
-		int getNumber() {
-			return number_;
-		} 
+    public:
+        void loadData();
+        // display data when the phonenumber is registered.
+        void displayAll();
+        void displaySent();
+        void displayReceived();
+        void displayMissed();
+    
 
 	private:
-		int time_;
-		//phone number
-		int number_;
-        Status status_;
+        vector<callData> callList_;
+    
 };
 
 #endif
