@@ -13,19 +13,27 @@ using namespace std;
 
 void Sms::loadData() {
     ifstream msgFile("sms.csv");
+    // string line, cell;
     string date, number, message, status;
 
     if (msgFile.is_open()) {
         while (!msgFile.eof()) {
+            /*
+            getline(msgFile, line);
+            stringstream linestream(line);
+
+            while (getline(line_stream, cell, ',')) {
+            */
             getline(msgFile, date, ',');
             getline(msgFile, number, ',');
             getline(msgFile, message, ',');
             getline(msgFile, status);
             msgData newMsg = fileToStruct(date, number, message, status);
+            
             msgList_.push_back(newMsg);
         }
     } else {
-        cout << "No file!" << endl;
+        cout << "Error : Cannot open the sms.csv file" << endl;
     }
     
 }
@@ -39,7 +47,13 @@ void Sms::displayNumbers() {
 msgData fileToStruct(string& dat, string& num, string& msg, string &sts) {
     msgData newMessage;
     newMessage.time = stoi(dat, nullptr);
+    
+    num.erase(num.begin());
+    num.erase(num.end());
     newMessage.number = num;
+
+    msg.erase(msg.begin());
+    msg.erase(msg.end());
     newMessage.message = msg;
     if (sts == "0") {
         newMessage.status = SENT;
