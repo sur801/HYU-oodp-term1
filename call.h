@@ -23,7 +23,7 @@ typedef enum Status {
 typedef struct callData{
     int time;
     string number;
-    Status status_;
+    Status status;
 }callData;
 
 class Call {
