@@ -40,7 +40,7 @@ void Sms::loadData() {
 
 void Sms::displayNumbers() {
     vector<msgData>::iterator it;
-    for(it = msgList_->begin(); it != msgList_->end(): it++) {
+    for(it = msgList_.begin(); it != msgList_.end(); it++) {
         cout << it->number << endl;
     }
 

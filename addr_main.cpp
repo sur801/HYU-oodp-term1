@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include "Sms.h"
+#include "sms.h"
 using namespace std;
 
 void displayScreen(vector<string> v);
@@ -15,9 +15,9 @@ int main(int argc, char** argv){
         cout << "choose number : ";
        
         cin >> op;
+        Sms s = Sms();
         switch (op) {
             case '2':
-                Sms s = Sms();
                 s.loadData();
                 break;
             default:
