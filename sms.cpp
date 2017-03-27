@@ -5,7 +5,7 @@
  *  @since  2017-03-18
  */
 
-#include "Sms.h"
+#include "sms.h"
 #include <iostream>
 #include <fstream>
 
