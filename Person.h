@@ -9,7 +9,7 @@
 #define __PERSON_H__
 
 #include <iostream>
-#include <vector>
+#include <unordered_map>
 
 typedef enum Group {
     FAMILY,
@@ -22,7 +22,8 @@ class Person{
     public:
         static vector<Person> addr;
         Person(string name, int number, Group group) : name_(name), number_(number), group_(group) {
-            addr.push_back(this);
+            map_name_.insert(make_pair(this->name_, this));
+            map_number_.insert(make_pair(this->number_, this));
         }
     
         void displayData();
@@ -31,16 +32,18 @@ class Person{
         void delData(string name);
         void delData(string number);
         void sortData();
-        void search();
+        void search(string name);
+        void search(string number);
     
         friend ostream& operator<<(ostream&, const Person&);
     
     
     private:
+        unorderd_map<string, &Person> map_number_;
+        unorderd_map<string, &Person> map_name_;
         string name_;
         int number_;
-        Group group;
-    
+        Group group_;
 
 };
 
