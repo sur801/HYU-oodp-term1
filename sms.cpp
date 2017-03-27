@@ -5,9 +5,9 @@
  *  @since  2017-03-18
  */
 
-#include "sms.h"
+#include "Sms.h"
 #include <iostream>
-#include <ifstream>
+#include <fstream>
 
 using namespace std;
 
@@ -41,6 +41,8 @@ void Sms::loadData() {
 void Sms::displayNumbers() {
     vector<msgData>::iterator it;
     for(it = msgList_->begin(); it != msgList_->end(): it++) {
+        cout << it->number << endl;
+    }
 
 }
 

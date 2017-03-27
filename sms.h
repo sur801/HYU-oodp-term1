@@ -7,9 +7,10 @@
 
 #ifndef __SMS_H__
 #define __SMS_H__
-
 #include <iostream>
+#include <vector>
 
+using namespace std;
 // identify status of SMS
 typedef enum Status {
     SENT,
@@ -27,6 +28,8 @@ class Sms {
     public:
         void loadData();
         void displayNumbers();
+        msgData fileToStruct(string& dat, string& num, string& msg, string &sts);
+        Sms(){};
 
     private:
         vector<msgData> msgList_;
