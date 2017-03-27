@@ -15,13 +15,19 @@
 
 using namespace std;
 
-class Csv {
+class CsvRead {
     public:
-        Csv();
-        static void loadData(istream& is);
+        static vector<string> loadData(istream& is);
 
     private:
         vector<string> msgList_;
+};
+
+class CsvWrite {
+    public:
+        static void saveData(ostream& os);
+
+    private:
 };
 
 

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void Csv::loadData(istream& is) {
+vector<string> CsvRead::loadData(istream& is) {
 
     vector<string> newMsg;
     string line, cell;
@@ -28,4 +28,6 @@ void Csv::loadData(istream& is) {
 
         newMsg.push_back("");
     }
+
+    return newMsg;
 }

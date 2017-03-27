@@ -20,7 +20,8 @@ int main(int argc, char** argv){
 
         switch (op) {
             case '2':
-                Csv::loadData(msgFile);
+                CsvRead::loadData(msgFile);
+                // cout << 
                 break;
             default:
                 break;

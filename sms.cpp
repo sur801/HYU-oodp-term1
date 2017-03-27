@@ -6,62 +6,47 @@
  */
 
 #include "sms.h"
-#include <iostream>
 #include <fstream>
 
 using namespace std;
 
-void Sms::loadData() {
-    ifstream msgFile("sms.csv");
-    // string line, cell;
-    string date, number, message, status;
-
-    if (msgFile.is_open()) {
-        while (!msgFile.eof()) {
-            /*
-            getline(msgFile, line);
-            stringstream linestream(line);
-
-            while (getline(line_stream, cell, ',')) {
-            */
-            getline(msgFile, date, ',');
-            getline(msgFile, number, ',');
-            getline(msgFile, message, ',');
-            getline(msgFile, status);
-            msgData newMsg = fileToStruct(date, number, message, status);
-            
-            msgList_.push_back(newMsg);
-        }
-    } else {
-        cout << "Error : Cannot open the sms.csv file" << endl;
-    }
-    
+void Sms::loadData(vector<string>& msg) {
+    msgList_.push_back(msg);
 }
+/*
+string Sms::print() {
+    return 
+*/
+void Sms::displayAll() {
+    int index = 1;
 
-void Sms::displayNumbers() {
     vector<msgData>::iterator it;
-    for(it = msgList_.begin(); it != msgList_.end(); it++) {
-        cout << it->number << endl;
+    for (it = msgList_.begin(); it != msgList_.end(); it++) {
+        cout << index++ << "\t" << /*TODO: printData(it)*/ << endl;
     }
 
 }
 
-msgData fileToStruct(string& dat, string& num, string& msg, string &sts) {
-    msgData newMessage;
-    newMessage.time = stoi(dat, nullptr);
-    
-    num.erase(num.begin());
-    num.erase(num.end());
-    newMessage.number = num;
+void Sms::displaySent() {
+    int index = 1;
 
-    msg.erase(msg.begin());
-    msg.erase(msg.end());
-    newMessage.message = msg;
-    if (sts == "0") {
-        newMessage.status = SENT;
-    } else {
-        newMessage.status = RECEIVED;
-    }
-    
-    return newMessage;
-}
+    vector<msgData>::iterator it;
+    for (it = msgList_.begin(); it != msgList_.end(); it++) {
+        if (it->
+
+
+void Sms::displayReceived() {
+    int index = 1;
+
+    vector<msgData>::iterator it;
+    for (it = msgList_.begin(); it != msgList_.end(); it++) {
+        it->
+
+/*
+ostream& printData(vector<msgData>::iterator it) {
+    int date;
+    string number, message, status;
+
+    it.pop_back();
+    date = stoi(it.pop_back(), nullptr);
+*/    

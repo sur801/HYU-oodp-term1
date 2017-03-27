@@ -20,15 +20,16 @@ typedef enum Status {
 	MISSED
 }Status ;
 
+/*
 typedef struct callData{
     int time;
     string number;
     Status status;
 }callData;
+*/
 
 class Call {
     public:
-        void loadData();
         // display data when the phonenumber is registered.
         void displayAll();
         void displaySent();
@@ -37,7 +38,7 @@ class Call {
     
 
 	private:
-        vector<callData> callList_;
+        vector<vector<string> > callList_;
     
 };
 
