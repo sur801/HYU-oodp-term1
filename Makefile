@@ -1,4 +1,4 @@
 all : addr_main
 
-addr_main : sms.cpp addr_main.cpp sms.h
-	g++ -std=c++11 -o sms sms.cpp addr_main.cpp
+addr_main : csv.cpp addr_main.cpp sms.h
+	g++ -std=c++11 -o sms csv.cpp addr_main.cpp

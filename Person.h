@@ -18,28 +18,22 @@ typedef enum Group {
     ETC
 };
 
-typedef struct messageData {
-    int time;
-    string number;
-    string message;
-    Status status;
-} msgData;
-
-
 class Person{
     public:
         static vector<Person> addr;
         Person(string name, int number, Group group) : name_(name), number_(number), group_(group) {
             addr.push_back(this);
         }
+    
         void displayData();
         void loadData();
         void saveData();
-        void addData();
-        void delData():
+        void delData(string name);
+        void delData(string number);
         void sortData();
         void search();
     
+        friend ostream& operator<<(ostream&, const Person&);
     
     
     private:

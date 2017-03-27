@@ -26,7 +26,7 @@ typedef struct messageData {
 
 class Sms {
     public:
-        void loadData();
+        static void loadData();
         void displayNumbers();
         msgData fileToStruct(string& dat, string& num, string& msg, string &sts);
         Sms(){};

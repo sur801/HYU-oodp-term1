@@ -10,19 +10,15 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 
 using namespace std;
-// identify status of SMS
-typedef enum Status {
-    SENT,
-    RECEIVED
-} Status;
 
 class Csv {
     public:
-        Sms();
-        void loadData(istream& is);
+        Csv();
+        static void loadData(istream& is);
 
     private:
         vector<string> msgList_;

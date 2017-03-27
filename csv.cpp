@@ -13,7 +13,7 @@ void Csv::loadData(istream& is) {
 
     vector<string> newMsg;
     string line, cell;
-    getline(str, line);
+    getline(is, line);
 
     stringstream lineStream(line);
 

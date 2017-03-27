@@ -1,6 +1,7 @@
 #include<iostream>
+#include<fstream>
 #include<vector>
-#include "sms.h"
+#include "csv.h"
 using namespace std;
 
 void displayScreen(vector<string> v);
@@ -15,10 +16,11 @@ int main(int argc, char** argv){
         cout << "choose number : ";
        
         cin >> op;
-        Sms s = Sms();
+        ifstream msgFile("sms.csv");
+
         switch (op) {
             case '2':
-                s.loadData();
+                Csv::loadData(msgFile);
                 break;
             default:
                 break;
