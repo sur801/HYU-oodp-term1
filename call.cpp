@@ -5,32 +5,78 @@
  *
  */
 
+#include "call.h"
 
-#include<call.h>
-#include<iostream.h>
+#define	COL	3
 
-Call::loadData(){
-    callData data;
-    
-    data.time = ;
-    data.number = ;
-    data.status = ;
+using namespace std;
+
+void Call::loadData(vector<string> call) {
+
+    callList_.push_back(call);
 }
 
+void Call::displayAll() {
+    int index = 1;
 
-Call::displayAll(){
-    
+    for (int i = 0; i < this->callSize(); i++) {
+    	cout << index++;
+        if (callList_[i][COL] == "0") {
+            cout << " <- ";
+        } else if (callList_[i][COL] == "1") {
+            cout << " -> ";
+        } else if (callList_[i][COL] == "2") {
+            cout << " ?? ";
+        } 
+        for (int j = 0; j < COL; j++) {
+            cout << callList_[i][j] << "\t";
+        }
+        cout << endl;
+    }
 }
 
+void Call::displaySent() {
+    int index = 1;
 
-Call::displaySent(){
-    
+    for (int i = 0; i < this->callSize(); i++) {
+        if (callList_[i][COL] == "0") {
+            cout << index++ << "<- ";
+            for (int j = 0; j < COL; j++) {
+                cout << callList_[i][j] << "\t";
+            }
+            cout << endl;
+        }
+    }
 }
 
-Call::displayReceived(){
-    
+void Call::displayReceived() {
+    int index = 1;
+
+    for (int i = 0; i < this->callSize(); i++) {
+        if (callList_[i][COL] == "1") {
+            cout << index++ << "-> ";
+            for (int j = 0; j < COL; j++) {
+                cout << callList_[i][j] << "\t";
+            }
+            cout << endl;
+        }
+    }
 }
 
-Call::displayMissed(){
-    
+void Call::displayMissed() {
+    int index = 1;
+
+    for (int i = 0; i < this->callSize(); i++) {
+        if (callList_[i][COL] == "2") {
+            cout << index++ << "?? ";
+            for (int j = 0; j < COL; j++) {
+                cout << callList_[i][j] << "\t";
+            }
+            cout << endl;
+        }
+    }
+}
+
+size_t Call::callSize() {
+    return callList_.size() - 1;
 }

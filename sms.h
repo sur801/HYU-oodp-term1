@@ -14,10 +14,12 @@
 using namespace std;
 
 // identify status of SMS
-typedef enum Status {
+/*
+enum Status {
     SENT,
     RECEIVED
-} Status;
+};
+*/
 
 class Sms {
     public:
@@ -31,7 +33,7 @@ class Sms {
         
     private:
         vector<vector<string> > msgList_;
-        // int msgCnt_;
+        // size_t msgCnt_;
 };
 
 

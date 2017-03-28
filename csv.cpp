@@ -11,23 +11,23 @@ using namespace std;
 
 vector<string> CsvRead::loadData(istream& is) {
 
-    vector<string> newMsg;
+    vector<string> newData;
     string line, cell;
     getline(is, line);
 
     stringstream lineStream(line);
 
-    newMsg.clear();
+    newData.clear();
 
     while (getline(lineStream, cell, ',')) {
 
-        newMsg.push_back(cell);
+        newData.push_back(cell);
     }
 
     if (!lineStream && cell.empty()) {
 
-        newMsg.push_back("");
+        newData.push_back("");
     }
 
-    return newMsg;
+    return newData;
 }

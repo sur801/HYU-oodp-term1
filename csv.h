@@ -16,7 +16,7 @@
 using namespace std;
 
 class CsvRead {
-    public:
+    public:    	
         vector<string> loadData(istream& is);
 
     private:

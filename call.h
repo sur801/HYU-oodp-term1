@@ -1,8 +1,8 @@
 /*
- * this file is header of call.cpp
+ * This file is header of call.cpp
+ * 
  * @author	Yurim Seo
  * @since	2017-03-17
- *
  */
 	
 
@@ -10,14 +10,17 @@
 #define __CALL_H__
 
 
-#include<iostream>
+#include <iostream>
+#include <vector>
+
+using namespace std;
 
 //identify status of call
-typedef enum Status {
+enum Status {
 	SENT,
 	RECEIVED,
 	MISSED
-}Status ;
+};
 
 /*
 typedef struct callData{
@@ -29,11 +32,14 @@ typedef struct callData{
 
 class Call {
     public:
+        Call() {};
+        void loadData(vector<string> call);
         // display data when the phonenumber is registered.
         void displayAll();
         void displaySent();
         void displayReceived();
         void displayMissed();
+        size_t callSize();
     
 
 	private:
