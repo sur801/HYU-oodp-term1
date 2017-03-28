@@ -15,6 +15,7 @@
 
 using namespace std;
 
+
 /*typedef enum Group {
     FAMILY,
     FRIEND,
@@ -26,27 +27,31 @@ using namespace std;
 class Person{
     public:
         Person(){};
-        Person(string name, int number, string group) : name_(name), number_(number), group_(group) {
-            vector_name_.push_back(make_pair(this->name_, this));
-            map_number_.insert(make_pair(this->number_, this));
-            this->sortData();
+        typedef vector<pair<string, Person*> > :: iterator v_it;
+        Person(string name, int number, string group){
+            this->name_ = name;
+            this->number_ = number;
+            this->group_ = group;
+            cout << "constructor" << endl;
+            cout << this->name_ << endl << this->number_ << endl << this->group_ << endl;
+            //this->sortData();
         }
-    
-        void displayData();
+        string getName() { return this->name_; };
+        int getNumber() { return this->number_; };
+        string getGroup() { return this->group_; };
+        void displayData(vector<pair<string, Person*> >);
         void loadData();
         void saveData();
-        void delData(string name);
-        void delData(int number);
-        void sortData();
+        void delDataByName(string name);
+        void delDataByNumber(int number);
+        void sortData(v_it, v_it);
         void searchByName(string name);
-        void searchByNumber(int number);
+        void searchByNumber(unordered_map<int, Person*> *m ,int number);
     
         friend ostream& operator<<(ostream&, const Person&);
     
     
     private:
-        vector<pair<string, Person*> > vector_name_;
-        unordered_map<int, Person*> map_number_;
         string name_;
         int number_;
         string group_;

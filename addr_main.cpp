@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <unordered_map>
 
 #include "person.h"
 #include "csv.h"
@@ -17,7 +18,12 @@ typedef enum Group {
     ETC
 };*/
 
+
+
 int main(int argc, char** argv) {
+    
+    vector<pair<string, Person*> > vector_name_;
+    unordered_map<int, Person*> map_number_;
     vector<string> menu = {"1. CallHistory", "2. MessageHistory", "3. Contacts"};
     vector<string> contact_menu = {"1. Add Person", "2. Delete Person", "3. Find By Name", "4. Find By Number", "5. Load Data", "6. Save Data"};
     char op;
@@ -35,6 +41,11 @@ int main(int argc, char** argv) {
         //Call call;
         CsvRead read;
 
+        string name;
+        int number;
+        string group;
+        Person p;
+        char op_detail;
         switch (op) {
             case '1':
                 /*
@@ -43,6 +54,7 @@ int main(int argc, char** argv) {
                 }
                 call.displayAll();
                 */
+                cout << endl;
                 break;
 
             case '2':
@@ -50,38 +62,54 @@ int main(int argc, char** argv) {
                     sms.loadData(read.loadData(msgFile));
                 }
                 sms.displayAll();
+                cout << endl;
                 break;
 
             case '3':
-                displayScreen(contact_menu);
-                cout << "choose option : ";
-                int op_num;
-                cin >> op_num;
                 
-                if(op_num == 1) {
-                    string name;
-                    int number;
-                    string group;
-                    cout << "name : ";
-                    cin >> name;
-                    cout << "number : ";
-                    cin >> number;
-                    cout << "group : ";
-                    cin >> group;
+                do{
+                    displayScreen(contact_menu);
+                    cout << "quit for q" << endl;
+                    cout << "choose option : ";
+                    cin >> op_detail;
+                    switch (op_detail) {
+                        case '1':
+                            cout << "name : ";
+                            cin >> name;
+                            cout << "number : ";
+                            cin >> number;
+                            cout << "group : ";
+                            cin >> group;
+                            
+                            
+                            p = Person(name, number, group);
+                            vector_name_.push_back(make_pair(name, &p));
+                            
+                            cout << endl;
+                            break;
+                            
+                        case '3':
+                            cout << "input : ";
+                            cin >> number;
+                            p.searchByNumber(&map_number_ , number);
+                            cout << endl;
+                            break;
+                            
+                        case '4':
+                            //cout << name << " " << group << endl;
+                            
+                            
+                            cout << endl;
+                            break;
+                        default:
+                            break;
+                            
+
+                    }
                     
-                    Person p_obj = Person(name, number, group);
-                    
-                } else if(op_num == 3) {
-                    Person p_obj = Person();
-                    string name;
-                    cout << "enter the name : " ;
-                    cin >> name;
-                    p_obj.searchByName(name);
-                    
-                } else if(op_num == 4) {
-                    cout << "hello!" << endl;
-                }
+                }while(op_detail!='q');
                 
+                cout << endl;
                 break;
 
             default:
