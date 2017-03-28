@@ -21,14 +21,17 @@ typedef enum Status {
 
 class Sms {
     public:
-        Sms();
-        print();
-        displayAll();
-        displaySent();
-        displayReceived();
+        Sms() {};
+        void loadData(vector<string> msg);
+        // print();
+        void displayAll();
+        static void displaySent();
+        static void displayReceived();
+        size_t msgSize();
         
     private:
         vector<vector<string> > msgList_;
+        // int msgCnt_;
 };
 
 
