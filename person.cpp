@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <unordered_map>
 #include "person.h"
 
 using namespace std;
@@ -17,7 +18,7 @@ typedef vector<pair<string, Person*> > :: iterator v_it;
 
 void Person::displayData(vector<pair<string, Person*> > v) {
     auto it = v.begin();
-    for(it ; it !=v.end() ; it++ ) {
+    for(it ; it != v.end() ; it++ ) {
         cout << it->first << endl << it->second->number_ << endl << it->second->group_ << endl << endl;
     }
 }
@@ -46,7 +47,7 @@ void Person::delDataByName(string name) {
     
 }
 
-void Person::delDataByNumber(int number) {
+void Person::delDataByNumber(string number) {
     /*
     auto it = map_number_.find(number);
     
@@ -66,42 +67,43 @@ void Person::sortData(v_it, v_it) {
    // sort(vector_name_.begin(), vector_name_.end());
 }
 
-void searchByNumber(unordered_map<int, Person*> *m ,int number) {
-    auto it = m->find(number);
+void Person::searchByNumber(unordered_map<string, Person*> *m ,string number) {
     
-    if ( it == m->end() )
+
+    auto it = m->find(number);
+    cout << number << endl;
+    //cout << it->second->getName() << endl;
+    if ( it == m->end() ) {
         cout << "not found" << endl;
-    else {
+    }else {
         
-        Person *p = it->second;
-        cout << "name : " << p->getName() << endl << "number : " << p->getNumber() << endl << "group : " << p->getGroup() << endl;
+        cout << "name : " << it->second->getName() << endl << "number : " << it->second->getNumber() << endl << "group : " << it->second->getGroup() << endl;
     }
 }
 
 
-void Person::searchByName(string name) {
-    /*
+void Person::searchByName(vector<pair<string, Person*> > *v ,string name){
+    
     int left = 0;
-    int right = vector_name_.size() - 1;
+    int right = v->size() - 1;
 
-    while(left <= right)
-    {
+    while(left <= right) {
         int mid = (right + left) / 2;
-        if(vector_name_[mid].first == name) {
-            Person *p = vector_name_[mid].second;
+        if((*v)[mid].first == name) {
+            Person *p = (*v)[mid].second;
             
             cout << "name : " << p->name_ << endl << "number : " << p->number_ << endl << "group : " << p->group_ << endl;
             break;
             
-        } else if(vector_name_[mid].first < name) {
+        } else if((*v)[mid].first < name) {
             left = mid + 1;
-        } else if(vector_name_[mid].first > name) {
+        } else if((*v)[mid].first > name) {
             right = mid - 1;
         }
         
         
     }
-     */
+     
     
    // cout << "not found!";
     
