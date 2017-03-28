@@ -11,6 +11,7 @@
 using namespace std;
 
 void Sms::loadData(vector<string> msg) {
+
     msgList_.push_back(msg);
 }
 /*
@@ -25,7 +26,12 @@ void Sms::displayAll() {
         for (col = row->begin(); col != row->end(); col++) {
         */
     for (int i = 0; i < this->msgSize(); i++) {
-        for (int j = 0; j < 4; j++) {
+        if (msgList_[i][3] == "0") {
+            cout << "<- ";
+        } else if (msgList_[i][3] == "1") {
+            cout << "-> ";
+        }
+        for (int j = 0; j < 3; j++) {
             cout << msgList_[i][j] << "\t";
         }
         cout << endl;
@@ -35,36 +41,30 @@ void Sms::displayAll() {
 void Sms::displaySent() {
     int index = 1;
 
-    /*
-    vector<vector<string> >::iterator row;
-    vector<string>::iterator col;
-    for (row = msgList_.begin(); row != msgList_.end(); row++) {
-        for (col = row->begin(); col != row->end(); col++) {
-            if (*row->end() == "0") {
-                cout << *col << "\t";
+    for (int i = 0; i < this->msgSize(); i++) {
+        if (msgList_[i][3] == "0") {
+            cout << "<- ";
+            for (int j = 0; j < 3; j++) {
+                cout << msgList_[i][j] << "\t";
             }
             cout << endl;
         }
     }
-    */
 }
 
 
 void Sms::displayReceived() {
     int index = 1;
 
-    /*
-    vector<vector<string> >::iterator row;
-    vector<string>::iterator col;
-    for (row = msgList_.begin(); row != msgList_.end(); row++) {
-        for (col = row->begin(); col != row->end(); col++) {
-            if (*row->end() == "1") {
-                cout << *col << "\t";
+    for (int i = 0; i < this->msgSize(); i++) {
+        if (msgList_[i][3] == "1") {
+            cout << "-> ";
+            for (int j = 0; j < 3; j++) {
+                cout << msgList_[i][j] << "\t";
             }
             cout << endl;
         }
     }
-    */
 }
 
 size_t Sms::msgSize() {

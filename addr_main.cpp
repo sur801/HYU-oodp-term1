@@ -20,12 +20,17 @@ int main(int argc, char** argv) {
        
         cin >> op;
         ifstream msgFile("sms.csv");
+        ifstream callFile("call.csv");
 
         Sms sms;
         CsvRead read;
 
         switch (op) {
             case '1':
+                while (!callFile.eof()) {
+                    call.loadData(read.loadData(msgFile))
+                }
+                call.displayAll();
                 break;
 
             case '2':
@@ -41,7 +46,7 @@ int main(int argc, char** argv) {
             default:
                 break;
         }
-    } while(op!='q');
+    } while(op != 'q');
     
     
 	return 0;
