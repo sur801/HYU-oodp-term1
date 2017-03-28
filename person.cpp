@@ -13,17 +13,21 @@
 
 using namespace std;
 
-typedef vector<pair<string, Person*> > :: iterator v_it;
-//bool cmp(Person& a, Person& b) { return a.name > b.name; }
+/*
+bool cmp(vector<pair<string, Person> > &st, vector<pair<string, Person> > &ed) {
+    
+    return st.second.name > ed.second.name;
+}
+*/
 
 void Person::displayData(vector<pair<string, Person> > v) {
     
-    /*
+    
     auto it = v.begin();
     for(it ; it != v.end() ; it++ ) {
-        cout << it->first << endl << it->second->number_ << endl << it->second->group_ << endl << endl;
+        cout << "name : " <<  it->first << "\t" << "number : " << it->second.number_ << "\t" << "group : " << it->second.group_ << endl;
     }
-     */
+    
 }
 
 void Person::loadData() {
@@ -66,23 +70,10 @@ void Person::delDataByNumber(string number) {
 }
 
 
-void Person::sortData(v_it, v_it) {
-   // sort(vector_name_.begin(), vector_name_.end());
+void Person::sortData(vector<pair<string, Person> > *v) {
+    sort(v->begin(),v->end());
 }
 
-void Person::searchByNumber(unordered_map<string, Person> *m ,string number) {
-    
-
-    auto it = m->find(number);
-    cout << number << endl;
-    //cout << it->second->getName() << endl;
-    if ( it == m->end() ) {
-        cout << "not found" << endl;
-    }else {
-        
-        cout << "name : " << it->second.getName() << endl << "number : " << it->second.getNumber() << endl << "group : " << it->second.getGroup() << endl;
-    }
-}
 
 
 void Person::searchByName(vector<pair<string, Person> > *v ,string name){
@@ -96,7 +87,7 @@ void Person::searchByName(vector<pair<string, Person> > *v ,string name){
             Person p = (*v)[mid].second;
             
             cout << "name : " << p.getName() << endl << "number : " << p.getNumber() << endl << "group : " << p.getGroup() << endl;
-            break;
+            return;
             
         } else if((*v)[mid].first < name) {
             left = mid + 1;
@@ -108,6 +99,6 @@ void Person::searchByName(vector<pair<string, Person> > *v ,string name){
     }
      
     
-   // cout << "not found!";
+    cout << "not found!";
     
 }
