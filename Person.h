@@ -8,42 +8,47 @@
 #ifndef __PERSON_H__
 #define __PERSON_H__
 
+#include <utility>
 #include <iostream>
+#include <vector>
 #include <unordered_map>
+using namespace std;
 
-typedef enum Group {
+/*typedef enum Group {
     FAMILY,
     FRIEND,
     COWORKER,
     ETC
-};
+} Group;
+ */
 
 class Person{
     public:
-        static vector<Person> addr;
-        Person(string name, int number, Group group) : name_(name), number_(number), group_(group) {
-            map_name_.insert(make_pair(this->name_, this));
+        Person(){};
+        Person(string name, int number, string group) : name_(name), number_(number), group_(group) {
+            map_name_.push_back(make_pair(this->name_, this));
             map_number_.insert(make_pair(this->number_, this));
+            this->sortData();
         }
     
         void displayData();
         void loadData();
         void saveData();
         void delData(string name);
-        void delData(string number);
+        void delData(int number);
         void sortData();
-        void search(string name);
-        void search(string number);
+        void searchByName(string name);
+        void searchByNumber(string number);
     
         friend ostream& operator<<(ostream&, const Person&);
     
     
     private:
-        unorderd_map<string, &Person> map_number_;
-        unorderd_map<string, &Person> map_name_;
+        vector<pair<string, Person&> > map_name_;
+        unordered_map<int, Person&> map_number_;
         string name_;
         int number_;
-        Group group_;
+        string group_;
 
 };
 
