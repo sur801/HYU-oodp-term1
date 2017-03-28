@@ -32,14 +32,17 @@ int main(int argc, char** argv) {
         ifstream callFile("call.csv");
 
         Sms sms;
+        //Call call;
         CsvRead read;
 
         switch (op) {
             case '1':
+                /*
                 while (!callFile.eof()) {
                     call.loadData(read.loadData(msgFile))
                 }
                 call.displayAll();
+                */
                 break;
 
             case '2':
@@ -51,8 +54,9 @@ int main(int argc, char** argv) {
 
             case '3':
                 displayScreen(contact_menu);
-                
+                cout << "choose option : ";
                 int op_num;
+                cin >> op_num;
                 
                 if(op_num == 1) {
                     string name;

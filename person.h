@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+
 using namespace std;
 
 /*typedef enum Group {
@@ -26,7 +27,7 @@ class Person{
     public:
         Person(){};
         Person(string name, int number, string group) : name_(name), number_(number), group_(group) {
-            map_name_.push_back(make_pair(this->name_, this));
+            vector_name_.push_back(make_pair(this->name_, this));
             map_number_.insert(make_pair(this->number_, this));
             this->sortData();
         }
@@ -38,14 +39,14 @@ class Person{
         void delData(int number);
         void sortData();
         void searchByName(string name);
-        void searchByNumber(string number);
+        void searchByNumber(int number);
     
         friend ostream& operator<<(ostream&, const Person&);
     
     
     private:
-        vector<pair<string, Person&> > map_name_;
-        unordered_map<int, Person&> map_number_;
+        vector<pair<string, Person*> > vector_name_;
+        unordered_map<int, Person*> map_number_;
         string name_;
         int number_;
         string group_;

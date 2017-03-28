@@ -25,8 +25,8 @@ class Sms {
         void loadData(vector<string> msg);
         // print();
         void displayAll();
-        static void displaySent();
-        static void displayReceived();
+        void displaySent();
+        void displayReceived();
         size_t msgSize();
         
     private:
