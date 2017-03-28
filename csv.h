@@ -20,7 +20,7 @@ class CsvRead {
         vector<string> loadData(istream& is);
 
     private:
-        vector<string> msgList_;
+        vector<string> newData_;
 };
 
 class CsvWrite {
