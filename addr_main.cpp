@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     vector<pair<string, Person> > vector_name_;
     unordered_map<string, Person > map_number_;
     vector<string> menu = {"1. CallHistory", "2. MessageHistory", "3. Contacts"};
-    vector<string> contact_menu = {"1. Add Person", "2. Delete Person", "3. Find By Name", "4. Find By Number", "5. Load Data", "6. Save Data"};
+    vector<string> contact_menu = {"1. Add Person", "2. Delete Person", "3. Find By Name", "4. Find By Number", "5. Load Data", "6. Save Data", "7. Display Local Data"};
     char op;
     do {
         
@@ -91,19 +91,30 @@ int main(int argc, char** argv) {
                         case '3':
                             cout << "name : ";
                             cin >> name;
-                            //p.displayData(vector_name_);
-                            //p.searchByName(&vector_name_ , name);
+                            
+                            Person::searchByName(&vector_name_ , name);
                             cout << endl;
+                            
                             cout << endl;
                             break;
                             
                         case '4':
                             //cout << name << " " << group << endl;
                             
-                            cout << "number : ";
+                            cout << "number input : ";
                             cin >> number;
-                            cout << map_number_[number].getName() << endl;
+                            cout << endl;
+                            //find function.
+                            cout << "name : " << "\t" << map_number_[number].getName() << "number : " << map_number_[number].getNumber() << "\t" << "group : " << map_number_[number].getGroup()<< endl;
+                            cout << endl;
                             break;
+                        case '7':
+                            Person::sortData(&vector_name_);
+                            Person::displayData(vector_name_);
+                            
+                            cout << endl;
+                            break;
+                            
                         default:
                             break;
                             
