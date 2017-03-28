@@ -39,14 +39,14 @@ class Person{
         string getName() { return this->name_; };
         string getNumber() { return this->number_; };
         string getGroup() { return this->group_; };
-        void displayData(vector<pair<string, Person*> > v);
+        void displayData(vector<pair<string, Person> > v);
         void loadData();
         void saveData();
         void delDataByName(string name);
         void delDataByNumber(string number);
         void sortData(v_it, v_it);
-        void searchByName(vector<pair<string, Person*> > *v ,string name);
-        static void searchByNumber(unordered_map<string, Person*> *m ,string number);
+        void searchByName(vector<pair<string, Person> > *v ,string name);
+        static void searchByNumber(unordered_map<string, Person> *m ,string number);
     
         friend ostream& operator<<(ostream&, const Person&);
     

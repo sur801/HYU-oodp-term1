@@ -16,11 +16,14 @@ using namespace std;
 typedef vector<pair<string, Person*> > :: iterator v_it;
 //bool cmp(Person& a, Person& b) { return a.name > b.name; }
 
-void Person::displayData(vector<pair<string, Person*> > v) {
+void Person::displayData(vector<pair<string, Person> > v) {
+    
+    /*
     auto it = v.begin();
     for(it ; it != v.end() ; it++ ) {
         cout << it->first << endl << it->second->number_ << endl << it->second->group_ << endl << endl;
     }
+     */
 }
 
 void Person::loadData() {
@@ -67,7 +70,7 @@ void Person::sortData(v_it, v_it) {
    // sort(vector_name_.begin(), vector_name_.end());
 }
 
-void Person::searchByNumber(unordered_map<string, Person*> *m ,string number) {
+void Person::searchByNumber(unordered_map<string, Person> *m ,string number) {
     
 
     auto it = m->find(number);
@@ -77,12 +80,12 @@ void Person::searchByNumber(unordered_map<string, Person*> *m ,string number) {
         cout << "not found" << endl;
     }else {
         
-        cout << "name : " << it->second->getName() << endl << "number : " << it->second->getNumber() << endl << "group : " << it->second->getGroup() << endl;
+        cout << "name : " << it->second.getName() << endl << "number : " << it->second.getNumber() << endl << "group : " << it->second.getGroup() << endl;
     }
 }
 
 
-void Person::searchByName(vector<pair<string, Person*> > *v ,string name){
+void Person::searchByName(vector<pair<string, Person> > *v ,string name){
     
     int left = 0;
     int right = v->size() - 1;
@@ -90,9 +93,9 @@ void Person::searchByName(vector<pair<string, Person*> > *v ,string name){
     while(left <= right) {
         int mid = (right + left) / 2;
         if((*v)[mid].first == name) {
-            Person *p = (*v)[mid].second;
+            Person p = (*v)[mid].second;
             
-            cout << "name : " << p->name_ << endl << "number : " << p->number_ << endl << "group : " << p->group_ << endl;
+            cout << "name : " << p.getName() << endl << "number : " << p.getNumber() << endl << "group : " << p.getGroup() << endl;
             break;
             
         } else if((*v)[mid].first < name) {

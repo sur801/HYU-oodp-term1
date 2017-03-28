@@ -23,8 +23,8 @@ typedef enum Group {
 
 int main(int argc, char** argv) {
     
-    vector<pair<string, Person*> > vector_name_;
-    unordered_map<string, Person*> map_number_;
+    vector<pair<string, Person> > vector_name_;
+    unordered_map<string, Person > map_number_;
     vector<string> menu = {"1. CallHistory", "2. MessageHistory", "3. Contacts"};
     vector<string> contact_menu = {"1. Add Person", "2. Delete Person", "3. Find By Name", "4. Find By Number", "5. Load Data", "6. Save Data"};
     char op;
@@ -82,17 +82,17 @@ int main(int argc, char** argv) {
                             
                             
                             p = Person(name, number, group);
-                            vector_name_.push_back(make_pair(name, &p));
-                            map_number_.insert({number, &p});
-                            
+                            vector_name_.push_back(make_pair(name, p));
+                            map_number_.insert({number, p});
+                
                             cout << endl;
                             break;
                             
                         case '3':
                             cout << "name : ";
                             cin >> name;
-                            p.displayData(vector_name_);
-                            p.searchByName(&vector_name_ , name);
+                            //p.displayData(vector_name_);
+                            //p.searchByName(&vector_name_ , name);
                             cout << endl;
                             cout << endl;
                             break;
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
                             
                             cout << "number : ";
                             cin >> number;
-                            cout << map_number_[number]->getName() << endl;
+                            cout << map_number_[number].getName() << endl;
                             break;
                         default:
                             break;
