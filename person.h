@@ -32,22 +32,24 @@ class Person{
             this->name_ = name;
             this->number_ = number;
             this->group_ = group;
-            //cout << "constructor" << endl;
-            //cout << this->name_ << endl << this->number_ << endl << this->group_ << endl;
-            //this->sortData();
         }
         string getName() { return this->name_; };
         string getNumber() { return this->number_; };
         string getGroup() { return this->group_; };
-        static void displayData(vector<pair<string, Person> > v);
+        static void displayData(vector<Person> v);
         void loadData();
         void saveData();
-        void delDataByName(string name);
-        void delDataByNumber(string number);
-        static void sortData(vector<pair<string, Person> > *v);
-        static void searchByName(vector<pair<string, Person> > *v ,string name);
+        static void delDataByName(vector<Person> *v ,string name);
+        static Person searchByName(vector<Person>  *v ,string name);
     
-        friend ostream& operator<<(ostream&, const Person&);
+        bool operator<(const Person &a) const {
+            return this->name_ < a.name_;
+        };
+
+        friend ostream& operator<<(ostream& os, Person& p) {
+            os << "name : " <<  p.getName()<< "\t" << "number : " << p.getNumber() << "\t" << "group : " << p.getGroup() << endl;
+            return os;
+        };
     
     
     private:

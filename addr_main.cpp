@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 
 #include "person.h"
 #include "csv.h"
@@ -23,10 +24,10 @@ typedef enum Group {
 
 int main(int argc, char** argv) {
     
-    vector<pair<string, Person> > vector_name_;
+    vector< Person > vector_name_;
     unordered_map<string, Person > map_number_;
     vector<string> menu = {"1. CallHistory", "2. MessageHistory", "3. Contacts"};
-    vector<string> contact_menu = {"1. Add Person", "2. Delete Person", "3. Find By Name", "4. Find By Number", "5. Load Data", "6. Save Data", "7. Display Local Data"};
+    vector<string> contact_menu = {"1. Add Person", "2. Delete Person by name", "3. Delete Person by number" , "4. Find By Name", "5. Find By Number", "6. Load Data", "7. Save Data", "8. Display Local Data"};
     char op;
     do {
         
@@ -69,7 +70,7 @@ int main(int argc, char** argv) {
                 do{
                     displayScreen(contact_menu);
                     cout << "quit for q" << endl;
-                    cout << "choose option : ";
+                    cout << "choose option : " ;
                     cin >> op_detail;
                     switch (op_detail) {
                         case '1':
@@ -82,34 +83,61 @@ int main(int argc, char** argv) {
                             
                             
                             p = Person(name, number, group);
-                            vector_name_.push_back(make_pair(name, p));
+                            vector_name_.push_back(p);
                             map_number_.insert({number, p});
                 
                             cout << endl;
                             break;
-                            
+
+                        case '2':
+                            cout << "name : ";
+                            cin >> name;
+
+                            Person::delDataByName(&vector_name_ ,name);
+                            // 이름에 따른 데이터들을 vector에서 지운다.
+                            map_number_.erase(name);
+                            // 이름에 따른 데이터들을 Hasn Table에서 지운다.
+                            cout << endl;
+                            break;
+
                         case '3':
+
+                            cout << "number input : ";
+                            cin >> number;
+
+                            map_number_.erase(map_number_[number].getName());
+                            Person::delDataByName(&vector_name_ , map_number_[number].getName());
+
+                            cout << endl;
+                            break;
+                            
+                        case '4':
                             cout << "name : ";
                             cin >> name;
                             
-                            Person::searchByName(&vector_name_ , name);
+                            p = Person::searchByName(&vector_name_ , name);
+                            if(p.getName() != "not")
+                                cout << p;
                             cout << endl;
                             
                             cout << endl;
                             break;
                             
-                        case '4':
-                            //cout << name << " " << group << endl;
+                        case '5':
                             
                             cout << "number input : ";
                             cin >> number;
                             cout << endl;
                             //find function.
-                            cout << "name : " << "\t" << map_number_[number].getName() << "number : " << map_number_[number].getNumber() << "\t" << "group : " << map_number_[number].getGroup()<< endl;
+                            p = map_number_[number];
+                            
+                            cout << p;
+                            
+
                             cout << endl;
                             break;
-                        case '7':
-                            Person::sortData(&vector_name_);
+                        case '8':
+                            sort(vector_name_.begin(),vector_name_.end());
                             Person::displayData(vector_name_);
                             
                             cout << endl;
