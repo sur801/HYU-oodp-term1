@@ -12,6 +12,8 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include "person.h"
 
 using namespace std;
 
@@ -28,10 +30,10 @@ class Call {
         Call() {};
         void loadData(vector<string> call);
         // display data when the phonenumber is registered.
-        void displayAll();
-        void displaySent();
-        void displayReceived();
-        void displayMissed();
+        void displayAll(unordered_map<string, Person > map);
+        void displaySent(unordered_map<string, Person > map);
+        void displayReceived(unordered_map<string, Person > map);
+        void displayMissed(unordered_map<string, Person > map);
         size_t callSize();
     
 

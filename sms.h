@@ -28,8 +28,8 @@ class Sms {
         Sms() {};
         void loadData(vector<string> msg);
         void displayAll(unordered_map<string, Person > map);
-        void displaySent();
-        void displayReceived();
+        void displaySent(unordered_map<string, Person > map);
+        void displayReceived(unordered_map<string, Person > map);
         size_t msgSize();
         
     private:

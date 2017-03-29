@@ -43,12 +43,16 @@ void Sms::displayAll(unordered_map<string, Person > map) {
     }
 }
 
-void Sms::displaySent() {
+void Sms::displaySent(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->msgSize(); i++) {
         if (msgList_[i][COL] == "0") {
             cout << index++ << " <- ";
+
+            if (msgList_[i][1] == map[msgList_[i][1]].getNumber()) {
+                msgList_[i][1] = map[msgList_[i][1]].getName();
+            }
             for (int j = 0; j < COL; j++) {
                 cout << msgList_[i][j] << "\t";
             }
@@ -58,12 +62,15 @@ void Sms::displaySent() {
 }
 
 
-void Sms::displayReceived() {
+void Sms::displayReceived(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->msgSize(); i++) {
         if (msgList_[i][COL] == "1") {
             cout << index++ << " -> ";
+            if (msgList_[i][1] == map[msgList_[i][1]].getNumber()) {
+                msgList_[i][1] = map[msgList_[i][1]].getName();
+            }
             for (int j = 0; j < COL; j++) {
                 cout << msgList_[i][j] << "\t";
             }

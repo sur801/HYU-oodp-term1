@@ -7,8 +7,6 @@
 
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <unordered_map>
 #include <algorithm>
 
 #include "person.h"
@@ -91,19 +89,19 @@ int main(int argc, char** argv) {
                     cin >> op_history;
                     switch (op_history) {
                         case '1':
-                            call.displayAll();
+                            call.displayAll(map_number_);
                             break;
 
                         case '2':
-                            call.displaySent();
+                            call.displaySent(map_number_);
                             break;
                         
                         case '3':
-                            call.displayReceived();
+                            call.displayReceived(map_number_);
                             break;
 
                         case '4':
-                            call.displayMissed();
+                            call.displayMissed(map_number_);
                             break;
 
                         default:
@@ -130,11 +128,11 @@ int main(int argc, char** argv) {
                             break;
 
                         case '2':
-                            sms.displaySent();
+                            sms.displaySent(map_number_);
                             break;
                         
                         case '3':
-                            sms.displayReceived();
+                            sms.displayReceived(map_number_);
                             break;
 
                         default:

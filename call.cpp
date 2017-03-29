@@ -23,7 +23,7 @@ void Call::loadData(vector<string> call) {
 	callList_.push_back(call);
 }
 
-void Call::displayAll() {
+void Call::displayAll(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->callSize(); i++) {
@@ -36,6 +36,10 @@ void Call::displayAll() {
             cout << " ?? ";
         }
 
+        if (callList_[i][1] == map[callList_[i][1]].getNumber()) {
+            callList_[i][1] = map[callList_[i][1]].getName();
+        }
+
         for (int j = 0; j < COL; j++) {
             cout << callList_[i][j] << "\t";
         }
@@ -43,12 +47,15 @@ void Call::displayAll() {
     }
 }
 
-void Call::displaySent() {
+void Call::displaySent(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->callSize(); i++) {
         if (callList_[i][COL] == "0") {
             cout << index++ << " <- ";
+            if (callList_[i][1] == map[callList_[i][1]].getNumber()) {
+        	    callList_[i][1] = map[callList_[i][1]].getName();
+        	}
             for (int j = 0; j < COL; j++) {
                 cout << callList_[i][j] << "\t";
             }
@@ -57,12 +64,15 @@ void Call::displaySent() {
     }
 }
 
-void Call::displayReceived() {
+void Call::displayReceived(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->callSize(); i++) {
         if (callList_[i][COL] == "1") {
             cout << index++ << " -> ";
+            if (callList_[i][1] == map[callList_[i][1]].getNumber()) {
+            	callList_[i][1] = map[callList_[i][1]].getName();
+        	}
             for (int j = 0; j < COL; j++) {
                 cout << callList_[i][j] << "\t";
             }
@@ -71,12 +81,15 @@ void Call::displayReceived() {
     }
 }
 
-void Call::displayMissed() {
+void Call::displayMissed(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->callSize(); i++) {
         if (callList_[i][COL] == "2") {
             cout << index++ << " ?? ";
+            if (callList_[i][1] == map[callList_[i][1]].getNumber()) {
+            	callList_[i][1] = map[callList_[i][1]].getName();
+        	}
             for (int j = 0; j < COL; j++) {
                 cout << callList_[i][j] << "\t";
             }
