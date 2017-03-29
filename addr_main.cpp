@@ -27,6 +27,8 @@ int main(int argc, char** argv) {
     vector< Person > vector_name_;
     unordered_map<string, Person > map_number_;
     vector<string> menu = {"1. CallHistory", "2. MessageHistory", "3. Contacts"};
+    vector<string> call_menu = {"1. All Calls", "2. Sent Calls", "3. Received Calls", "4. Missed Calls"};
+    vector<string> msg_menu = {"1. All Messages", "2. Sent Messages", "3. Received Messages"};
     vector<string> contact_menu = {"1. Add Person", "2. Delete Person by name", "3. Delete Person by number" , "4. Find By Name", "5. Find By Number", "6. Load Data", "7. Save Data", "8. Display Local Data"};
     char op;
     do {
@@ -38,30 +40,78 @@ int main(int argc, char** argv) {
         cin >> op;
         ifstream msgFile("sms.csv");
         ifstream callFile("call.csv");
+        ifstream personFile("person.csv");
 
         Sms sms;
         Call call;
+        vector<string> person;
         CsvRead read;
 
         string name;
         string number;
         string group;
         Person p;
-        char op_detail;
+        char op_call, op_msg, op_detail;
+        
         switch (op) {
             case '1':
                 while (!callFile.eof()) {
                     call.loadData(read.loadData(callFile));
                 }
-                call.displayAll();
+                do {
+                    displayScreen(call_menu);
+                    cout << "quit for q" << endl;
+                    cout << "choose option : ";
+                    cin >> op_call;
+                    switch (op_call) {
+                        case '1':
+                            call.displayAll();
+                            break;
 
+                        case '2':
+                            call.displaySent();
+                            break;
+                        
+                        case '3':
+                            call.displayReceived();
+                            break;
+
+                        case '4':
+                            call.displayMissed();
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                } while (op_call != 'q');
+                
                 break;
 
             case '2':
                 while (!msgFile.eof()) {
                     sms.loadData(read.loadData(msgFile));
                 }
-                sms.displayAll();
+                displayScreen(msg_menu);
+                    cout << "quit for q" << endl;
+                    cout << "choose option : ";
+                    cin >> op_call;
+                    switch (op_call) {
+                        case '1':
+                            sms.displayAll();
+                            break;
+
+                        case '2':
+                            sms.displaySent();
+                            break;
+                        
+                        case '3':
+                            sms.displayReceived();
+                            break;
+
+                        default:
+                            break;
+                    }
 
                 break; 
 
@@ -136,6 +186,20 @@ int main(int argc, char** argv) {
 
                             cout << endl;
                             break;
+
+                        case '6':
+                            while (!personFile.eof()) {
+                                person = read.loadData(personFile);
+                                p = Person(person[0], person[1], person[2]);
+                                vector_name_.push_back(p);
+                                map_number_.insert({person[1], p});
+                            }
+                            break;
+
+                        case '7':
+
+
+
                         case '8':
                             sort(vector_name_.begin(),vector_name_.end());
                             Person::displayData(vector_name_);
@@ -149,7 +213,7 @@ int main(int argc, char** argv) {
 
                     }
                     
-                }while(op_detail!='q');
+                } while(op_detail!='q');
                 
                 cout << endl;
                 break;

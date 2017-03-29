@@ -40,7 +40,7 @@ void Call::displaySent() {
 
     for (int i = 0; i < this->callSize(); i++) {
         if (callList_[i][COL] == "0") {
-            cout << index++ << "<- ";
+            cout << index++ << " <- ";
             for (int j = 0; j < COL; j++) {
                 cout << callList_[i][j] << "\t";
             }
@@ -54,7 +54,7 @@ void Call::displayReceived() {
 
     for (int i = 0; i < this->callSize(); i++) {
         if (callList_[i][COL] == "1") {
-            cout << index++ << "-> ";
+            cout << index++ << " -> ";
             for (int j = 0; j < COL; j++) {
                 cout << callList_[i][j] << "\t";
             }
@@ -68,7 +68,7 @@ void Call::displayMissed() {
 
     for (int i = 0; i < this->callSize(); i++) {
         if (callList_[i][COL] == "2") {
-            cout << index++ << "?? ";
+            cout << index++ << " ?? ";
             for (int j = 0; j < COL; j++) {
                 cout << callList_[i][j] << "\t";
             }
