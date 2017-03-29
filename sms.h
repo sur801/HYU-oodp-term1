@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include "person.h"
 
 using namespace std;
 
@@ -25,15 +27,13 @@ class Sms {
     public:
         Sms() {};
         void loadData(vector<string> msg);
-        // print();
-        void displayAll();
+        void displayAll(unordered_map<string, Person > map);
         void displaySent();
         void displayReceived();
         size_t msgSize();
         
     private:
         vector<vector<string> > msgList_;
-        // size_t msgCnt_;
 };
 
 

@@ -5,7 +5,6 @@
  *  @since  2017-03-26
  */
 
-
 #include <iostream>
 #include <algorithm>
 #include <unordered_map>
@@ -20,25 +19,16 @@ bool cmp(vector<pair<string, Person> > &st, vector<pair<string, Person> > &ed) {
 }
 */
 
-void Person::displayData(vector<Person>  v) {
-    
+void Person::displayData(vector<Person> v) {
     
     auto it = v.begin();
-    for(it ; it != v.end() ; it++ ) {
+    for(; it != v.end() ; it++ ) {
         cout << (*it);
     }
     
 }
 
-void Person::loadData() {
-    
-}
-
-void Person::saveData() {
-
-}
-
-void Person::delDataByName(vector<Person>  *v ,string name) {
+void Person::delDataByName(vector<Person> *v ,string name) {
     
     int left = 0;
     int right = v->size() - 1;

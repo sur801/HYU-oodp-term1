@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <iomanip>
 
 using namespace std;
 
@@ -36,9 +37,7 @@ class Person{
         string getName() { return this->name_; };
         string getNumber() { return this->number_; };
         string getGroup() { return this->group_; };
-        static void displayData(vector<Person> v);
-        void loadData();
-        void saveData();
+        static void displayData(vector<Person> v);  
         static void delDataByName(vector<Person> *v ,string name);
         static Person searchByName(vector<Person>  *v ,string name);
     
@@ -47,7 +46,7 @@ class Person{
         };
 
         friend ostream& operator<<(ostream& os, Person& p) {
-            os << "name : " <<  p.getName()<< "\t" << "number : " << p.getNumber() << "\t" << "group : " << p.getGroup() << endl;
+            os << "||NAME|| " << setw(20) << left << p.getName() << "||NUMBER|| " << setw(20) << left << p.getNumber() << "\t" << "||GROUP|| : " << p.getGroup() << endl;
             return os;
         };
     

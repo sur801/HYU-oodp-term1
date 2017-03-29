@@ -12,6 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "person.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ class CsvRead {
 
 class CsvWrite {
     public:
-        static void saveData(ostream& os);
+        static void saveData(vector<Person> data);
 
     private:
 };

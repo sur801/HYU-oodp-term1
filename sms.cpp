@@ -12,6 +12,8 @@
 using namespace std;
 
 void Sms::loadData(vector<string> msg) {
+    string temp = msg[0];
+    msg[0] = temp.substr(0, 4) + "-" + temp.substr(4, 2) + "-" + temp.substr(6, 2) + " " + temp.substr(8, 2) + ":" + temp.substr(10, 2) + ":" + temp.substr(12);
 
     msgList_.push_back(msg);
 }
@@ -19,7 +21,7 @@ void Sms::loadData(vector<string> msg) {
    string Sms::print() {
    return 
  */
-void Sms::displayAll() {
+void Sms::displayAll(unordered_map<string, Person > map) {
     int index = 1;
 
     for (int i = 0; i < this->msgSize(); i++) {
@@ -29,6 +31,11 @@ void Sms::displayAll() {
         } else if (msgList_[i][COL] == "1") {
             cout << " -> ";
         }
+
+        if (msgList_[i][1] == map[msgList_[i][1]].getNumber()) {
+            msgList_[i][1] = map[msgList_[i][1]].getName();
+        }
+
         for (int j = 0; j < COL; j++) {
             cout << msgList_[i][j] << "\t";
         }
@@ -55,7 +62,6 @@ void Sms::displayReceived() {
     int index = 1;
 
     for (int i = 0; i < this->msgSize(); i++) {
-        cout << index++;
         if (msgList_[i][COL] == "1") {
             cout << index++ << " -> ";
             for (int j = 0; j < COL; j++) {
@@ -67,5 +73,5 @@ void Sms::displayReceived() {
 }
 
 size_t Sms::msgSize() {
-    return msgList_.size() - 1;
+    return msgList_.size();
 }

@@ -30,3 +30,17 @@ vector<string> CsvRead::loadData(istream& is) {
 
     return newData_;
 }
+
+void CsvWrite::saveData(vector<Person> data) {
+    ofstream dataFile("person.csv");
+
+    auto it = data.begin();
+    while (it != data.end()) {
+        dataFile << it->getName() << "," << it->getNumber() << "," << it->getGroup();
+        if (++it != data.end()) {
+            dataFile << endl;
+        }
+    }
+
+    dataFile.close();
+}

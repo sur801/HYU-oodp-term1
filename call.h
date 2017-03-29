@@ -22,13 +22,6 @@ enum Status {
 	MISSED
 };
 
-/*
-typedef struct callData{
-    int time;
-    string number;
-    Status status;
-}callData;
-*/
 
 class Call {
     public:
